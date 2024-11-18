@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:intl/intl.dart'; // Import added
+import 'package:intl/intl.dart';
 
 class ChatScreen extends StatelessWidget {
   final String boardName;
@@ -10,10 +10,9 @@ class ChatScreen extends StatelessWidget {
 
   ChatScreen({required this.boardName});
 
-  // Function to send a message
   Future<void> sendMessage(String message) async {
     if (message.trim().isEmpty) {
-      return; // Do nothing if the message is empty
+      return; 
     }
 
     try {
@@ -56,7 +55,7 @@ class ChatScreen extends StatelessWidget {
                 final messages = snapshot.data!.docs;
 
                 return ListView.builder(
-                  reverse: true, // Show newest messages at the bottom
+                  reverse: true, 
                   itemCount: messages.length,
                   itemBuilder: (context, index) {
                     final message = messages[index];
@@ -77,7 +76,6 @@ class ChatScreen extends StatelessWidget {
             ),
           ),
 
-          // Message Input Field
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -108,7 +106,6 @@ class ChatScreen extends StatelessWidget {
     );
   }
 
-  // Function to build a message bubble
   Widget _buildMessageBubble({
     required String messageText,
     required String username,

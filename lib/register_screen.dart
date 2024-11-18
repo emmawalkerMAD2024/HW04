@@ -20,13 +20,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Future<void> registerUser() async {
     try {
-      // Firebase Authentication
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
 
-      // Add user details to Firestore
       await _firestore.collection('users').doc(userCredential.user?.uid).set({
         'firstName': _firstNameController.text.trim(),
         'lastName': _lastNameController.text.trim(),
@@ -35,7 +33,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
         'registrationDateTime': DateTime.now(),
       });
 
-      // Navigate to Chat Screen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => ChatScreen(boardName: 'General')),
@@ -49,13 +46,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Future<void> loginUser() async {
     try {
-      // Firebase Authentication
       await _auth.signInWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
 
-      // Navigate to Chat Screen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => ChatScreen(boardName: 'General')),

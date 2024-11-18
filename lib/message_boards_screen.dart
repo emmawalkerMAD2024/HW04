@@ -16,7 +16,7 @@ class MessageBoardsScreen extends StatelessWidget {
         itemCount: boards.length,
         itemBuilder: (context, index) {
           return ListTile(
-            leading: Icon(Icons.forum), // Replace with icons if needed
+            leading: Icon(Icons.forum), 
             title: Text(boards[index]['name']!),
             onTap: () {
               Navigator.push(
